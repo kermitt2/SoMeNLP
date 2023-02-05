@@ -1,3 +1,52 @@
+This is a fork of SoMeNLP for experimenting and benchmarking exercices.
+
+Train a single task model using the dev set to select best model and without test set (as defined in the data configuration):
+
+```console
+train_model --model-config configurations/PMC/NER/gold_SciBERT_final.json --data-config configurations/PMC/NER/gold_data_SciBERT_final_2.json
+```
+
+The modified data config file `gold_data_SciBERT_final_2.json` should correspond to the usual training scenario (train set and dev set to select the best model). 
+
+Benchmark a model against test set (as defined in the data configuration):
+
+```console
+bin/benchmark --model-config /media/lopez/store/save/Gold-SciBERT/04-02-2023_21-50-57/model_conf.json --data-config configurations/PMC/NER/gold_data_SciBERT_final_2.json
+```
+
+(the `bin/benchmark` script simply loads the best model given in the config and eval against the test set) 
+
+With 50 training epochs, best models selection with dev set, and evaluation on test set, we have: 
+
+```
+Performing a benchmark of the model
+===================================
+Start testing on corpus 0
+Testing on corpus 0 took 103.584 seconds
+Classification result on test_0 ep 40:
+
+Application/Precision/test_0:   0.815
+Application/Recall/test_0:  0.867
+Application/FScore/test_0:  0.84
+
+Total/Precision/test_0: 0.815
+Total/Recall/test_0:    0.867
+Total/FScore/test_0:    0.84
+
+Total/Loss/test_0:  0
+Done
+
+Confusion Matrix for:
+['B-Application', 'I-Application', 'O']
+[[   514      1     56]
+ [     3    841    129]
+ [    78    175 336394]]
+
+```
+
+Note: the original data config file indicates 200 epochs. 
+
+
 # SoMeNLP
 
 SoMeNLP provides functionality for performing information extraction for software mentions in scientific articles. 
