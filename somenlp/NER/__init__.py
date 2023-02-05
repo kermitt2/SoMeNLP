@@ -6,4 +6,4 @@ from .data_handler import DataHandler
 from .model_wrapper import ModelWrapper
 from .models import BiLSTM_CRF, FeatureLSTM, CombinedLSTM
 from .trainer import Trainer
-from .run_model import main, predict, tune
+from .run_model import main, predict, tune, benchmark

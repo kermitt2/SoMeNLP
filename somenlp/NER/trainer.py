@@ -35,6 +35,7 @@ class Trainer():
                 if self.model_w.best_performance <= f:
                     self.model_w.current_is_best = True
                     self.model_w.best_performance = f
+                    print("\n --> setting this model as current_is_best\n")
 
         scalars['{}Total/Precision/{}'.format(meta_name, data_set_name)] = w_precision
         scalars['{}Total/Recall/{}'.format(meta_name, data_set_name)] = w_recall
@@ -64,7 +65,8 @@ class Trainer():
         for ep in range(1, epochs+1):
             self.model_w.model.train()
             self.model_w.current_is_best = False
-            print("Epoch {}".format(self.model_w.global_epoch))
+            print("\nEpoch {}".format(self.model_w.global_epoch))
+            print("============")
             if self.data_handler.multi_task_mapping:
                 if 'hierarchy_depth' in self.model_w.config['model']['gen']:
                     train_depth = self._get_train_depth(ep, self.model_w.config['model']['gen']['hierarchy_depth'])
@@ -131,24 +133,24 @@ class Trainer():
                         self.model_w.save_checkpoint(step)
                     if step % self.train_config['test_batches'] == 0:
                         self._test_model()
-                
+                    
             end = time.time()
             print("Epoch took {} seconds".format(round(end - start, 3)))
 
             if self.model_w.global_epoch % self.train_config['test_epochs'] == 0:
-                self._test_model()
+                self._test_model("dev")
             if self.model_w.global_epoch >= self.train_config['save_from']:
                 if self.model_w.global_epoch % self.train_config['save_epochs'] == 0:
                     self.model_w.save_checkpoint()
                 if 'save_max' in self.train_config and self.train_config['save_max'] and self.model_w.current_is_best:
-                    print("Saving model with best performance..")
+                    print(" --> Saving model with best performance..")
                     self.model_w.save_checkpoint()
 
             self.model_w.global_epoch += 1
 
-    def _test_model(self):
+    def _test_model(self, set_name):
         self.model_w.model.eval()
-        for idx, dataset in enumerate(self.data_handler.data_config['sets']['test']):
+        for idx, dataset in enumerate(self.data_handler.data_config['sets'][set_name]):
             print("Start testing on corpus {}".format(idx))
             ep_loss = 0
             if not self.data_handler.multi_task_mapping:
@@ -268,7 +270,7 @@ class Trainer():
 
     def train(self):
         for idx, dataset in enumerate(self.data_handler.data_config['sets']['train']):
-            print("Training on {} dataset from train set".format(idx))
+            print("Training on {} dataset from train set".format(idx+1))
             if dataset["epochs"] > 0:
                 self.model_w.set_optim(dataset['optimizer'])
                 if self.model_w.optim_grouped_params is not None:

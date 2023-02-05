@@ -98,6 +98,7 @@ class ModelWrapper():
         ]
 
     def save_checkpoint(self, step=0):
+        print(" --> saving model...")
         torch.save({
             'epoch': self.global_epoch,
             'current_performance': self.current_performance,
