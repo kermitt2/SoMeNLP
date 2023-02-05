@@ -5,6 +5,7 @@ import unicodedata
 import numpy as np
 
 from nltk.corpus import wordnet
+nltk.download('averaged_perceptron_tagger')
 
 from . import word_rules
 
