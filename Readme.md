@@ -1,6 +1,6 @@
 This is a fork of SoMeNLP for experimenting and benchmarking exercices.
 
-Train a single task model using the dev set to select best model and without test set (as defined in the data configuration):
+After following the instructions od the original project readme (below), train a single task model using the dev set to select best model and without test set (as defined in the data configuration):
 
 ```console
 train_model --model-config configurations/PMC/NER/gold_SciBERT_final.json --data-config configurations/PMC/NER/gold_data_SciBERT_final_2.json
@@ -8,13 +8,23 @@ train_model --model-config configurations/PMC/NER/gold_SciBERT_final.json --data
 
 The modified data config file `gold_data_SciBERT_final_2.json` should correspond to the usual training scenario (train set and dev set to select the best model). 
 
-Benchmark a model against test set (as defined in the data configuration):
+The config file of the saved model needs to be edited to add the path of the model weights (it's not updated when saving the weights). If the trained model is saved under the "save" path `/media/lopez/store/save`, edit the config file, for instance `/media/lopez/store/save/Gold-SciBERT/04-02-2023_21-50-57/model_conf.json` and the `checkpoint` attribute:
+
+```
+        "checkpoint": {
+            "model": "/media/lopez/store/save/Gold-SciBERT/04-02-2023_21-50-57/ep_39_step_0_perf_1.pth",
+            "save_dir": "/media/lopez/store/save/Gold-SciBERT/04-02-2023_21-50-57/",
+            "log_dir": "/media/lopez/store/save/Gold-SciBERT/04-02-2023_21-50-57/"
+        },
+```
+
+Then, to benchmark a model against test set (as defined in the data configuration):
 
 ```console
 bin/benchmark --model-config /media/lopez/store/save/Gold-SciBERT/04-02-2023_21-50-57/model_conf.json --data-config configurations/PMC/NER/gold_data_SciBERT_final_2.json
 ```
 
-(the `bin/benchmark` script simply loads the best model given in the config and eval against the test set) 
+(the `bin/benchmark` script simply loads the best model given in the config and eval against the test set, as defined in the data configuration) 
 
 With 50 training epochs, best models selection with dev set, and evaluation on test set, we have: 
 
@@ -41,11 +51,9 @@ Confusion Matrix for:
 [[   514      1     56]
  [     3    841    129]
  [    78    175 336394]]
-
 ```
 
-Note: the original data config file indicates 200 epochs. 
-
+Note: the original data config file indicates 200 epochs, so we will need to use the same number of epochs (but it takes really a lot of time). 
 
 # SoMeNLP
 
