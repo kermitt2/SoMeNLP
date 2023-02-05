@@ -29,9 +29,12 @@
         "max_output_length": 110,
         "test_epochs": 1,
         "save_epochs": 1000,
-        "print_batches": 50,
-        "save_batches": 40000,
-        "test_batches": 10000,
-        "tag_mode": "bio"
+        "print_batches": 200,
+        "save_batches": 100000,
+        "test_batches": 100000,
+        "tag_mode": "bio",
+        "eval_dataset_name": "devel_0",
+        "save_from": 30,
+        "save_max": true
     }
 }
