@@ -1,6 +1,6 @@
 This is a fork of SoMeNLP for experimenting and benchmarking exercices.
 
-After following the instructions od the original project readme (below), train a single task model using the dev set to select best model and without test set (as defined in the data configuration):
+After following the instructions of the original project readme (below, note: although not used with SciBERT, generating the features is necessary to avoid raising errors), train a single task model using the dev set to select best model and without test set (as defined in the data configuration):
 
 ```console
 train_model --model-config configurations/PMC/NER/gold_SciBERT_final.json --data-config configurations/PMC/NER/gold_data_SciBERT_final_2.json
