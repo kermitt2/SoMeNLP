@@ -1,0 +1,293 @@
+<teiCorpus xmlns="http://www.tei-c.org/ns/1.0" version="4.0.0">
+   <teiHeader xmlns="">
+      <fileDesc>
+         <titleStmt>
+            <title>Softcite annotated corpus</title>
+            <respStmt>
+               <resp>Principal Investigator</resp>
+               <name>James Howison</name>
+            </respStmt>
+            <respStmt xml:id="curator">
+               <resp>curator</resp>
+               <name>James Howison, Cai Fan Du, Patrice Lopez</name>
+            </respStmt>
+            <respStmt xml:id="annotator0">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator1">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator2">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator3">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator4">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator5">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator6">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator7">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator8">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator9">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator10">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator11">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator12">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator13">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator14">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator15">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator16">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator17">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator18">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator19">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator20">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator21">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator22">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator23">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator24">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator25">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator26">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator27">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator28">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator29">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator30">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator31">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator32">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator33">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator34">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator35">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+            <respStmt xml:id="annotator36">
+               <resp>annotator</resp>
+               <name>ANONYMIZED</name>
+            </respStmt>
+         </titleStmt>
+         <notesStmt>
+            <note>The Softcite dataset is a gold standard corpus of manually annotated software mentions from academic PDFs.</note>
+            <note>This corpus file contains one TEI entry for every scholar publication, including or not manual annotations. For scholar publications containing annotations, each paragraph containing at least one manually annotated software mention is encoded under the TEI body element. All the manual annotations under p elements (paragraph) have been further validated or corrected by a curator to reach a final decision.</note>
+         </notesStmt>
+         <publicationStmt>
+            <publisher>Howison Lab, University of Texas at Austin, School of Information</publisher>
+            <date when="2020"/>
+            <availability status="free">
+               <licence target="https://creativecommons.org/licenses/by/4.0/">
+                  <p>Attribution 4.0 International (CC BY 4.0)</p>
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <bibl>Softcite corpus, version 0.7.0, 2020</bibl>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <appInfo>
+            <application ident="GROBID" version="0.5.6-SNAPSHOT" when="2019-07-14T13:21+0000">
+               <desc>A machine learning software for extracting information from scholarly documents</desc>
+               <ref target="https://github.com/kermitt2/grobid"/>
+            </application>
+         </appInfo>
+         <appInfo>
+            <application ident="GROBID-SOFTWARE-MENTIONS" version="0.6.0-SNAPSHOT" when="2019-11-21T14:59+0000">
+               <desc>A GROBID module to recognize in textual documents and PDF any mentions of software</desc>
+               <ref target="https://github.com/ourresearch/software-mentions"/>
+            </application>
+         </appInfo>
+         <classDecl>
+            <taxonomy>
+               <category xml:id="unique_annotator">
+                  <catDesc>Document originally analyzed by one annotator</catDesc>
+               </category>
+               <category xml:id="multiple_annotators">
+                  <catDesc>Document originally analyzed by more than one annotator</catDesc>
+               </category>
+               <category xml:id="with_reconciliation">
+                  <catDesc>Document analyzed by one or more annotators with review by the curator team</catDesc>
+               </category>
+               <category xml:id="with_reconciliation_and_scripts">
+                  <catDesc>Document analyzed by one or more annotators with review by the curator team, combined with additional corrections driven by automated consistency checks</catDesc>
+               </category>
+            </taxonomy>
+         </classDecl>
+      </encodingDesc>
+   </teiHeader>
+   <TEI subtype="pmc" type="article">
+      <teiHeader>
+         <fileDesc xml:id="b5468afb2a">
+            <titleStmt>
+               <title>Embedding online patient record access in UK primary care: a survey of stakeholder experiences</title>
+            </titleStmt>
+            <sourceDesc>
+               <bibl>
+                  <idno type="DOI">10.1258/shorts.2012.012009</idno>
+                  <idno type="PMC">PMC3365791</idno>
+                  <idno type="PMID">22666531</idno>
+                  <idno type="origin">PMC3365791</idno>
+               </bibl>
+            </sourceDesc>
+         </fileDesc>
+         <encodingDesc/>
+         <profileDesc>
+            <textClass>
+               <catRef target="#with_reconciliation_and_scripts"/>
+               <catRef target="#unique_annotator"/>
+            </textClass>
+         </profileDesc>
+      </teiHeader>
+      <text xml:lang="en">
+         <body>
+            <p>Electronic Health Records (EHR) represent the central pillar of eHealth strategies worldwide, since they offer the capacity to support patient care, quality improvement, population health surveillance and research. <ref type="bibr">2</ref> Until recently the topics of EHR and 'Consumer Health Informatics' tended to be considered separately; discussions of the former being mainly centred on healthcare institutions. Across North America and Europe there has been a gradual realization of the synergies between these two areas, manifested in the growing attention that is being paid to Personal Health Records (PHR) in both the scientific and policy literatures. The PHR is a complex construct and many have bemoaned the lack of consensus on its precise definition. <ref type="bibr">3</ref> The central feature is a patient-accessible Electronic Health Record, although models vary in the source and controller of the information (healthcare provider or patient; single or multiple providers), the medium (e.g. web, kiosk, USB) and the additional functionalities associated with the software (e.g. education, prescription reordering, provider messaging, decision support). <ref type="bibr">4,5</ref> This report is concerned with one particular aspect of the PHR concept, namely online access by patients to provider-generated information that is specific to their health history and current conditions, and held in the computer systems of primary healthcare centres. We refer to this as Record Access, in line with the language adopted in recent guidelines from the Royal College of General Practitioners, <ref type="bibr">6</ref> although similar applications have also been characterised as 'tethered Personal Health Records'. <ref type="bibr">7</ref> The idea of patients accessing their own health records is not a new one. <ref type="bibr">8</ref> However, the accessibility afforded by the Internet, and the capacity of emerging PHR to integrate personal health applications with provider-owned record systems, creates interesting new challenges and research questions.</p>
+            <p>ii Reflecting this history, the origins of the PHR movement in the UK lie with a small number of enthusiastic GPs who pioneered record sharing with patients using computer printouts and portable downloads, latterly partnering with GP systems suppliers to provide waiting-room kiosks and online portals. <ref type="bibr">10</ref> This has yielded favourable user responses and positive impacts on knowledge, mutual trust and record accuracy, despite some concerns over security and confidentiality <ref type="bibr">11,12,13</ref> This ground-up approach sits in stark contrast to the top-down one used to introduce patient access to the NHS Summary Care Record via '<rs cert="1.0" resp="#annotator1" type="software" xml:id="b5468afb2a-software-simple-0">HealthSpace</rs>', which has so far met with limited success. <ref type="bibr">14</ref> Despite the enthusiastic response of early adopters, Record Access services remain uncommon in UK primary care and, given the caveats around privacy and liability indicated in the RCGP guidelines, more evidence is needed if they are to i This term has been used to describe emerging systems that offer Record Access as part of a broader suite of online consumer tools for administrative tasks such as appointment booking. ii The UK has a single National Health Service in which the GP acts as the first point of care, the conduit to specialist services and the coordinator of community-based follow-up. As a result they generally receive core documentation pertaining to their patients from other parts of the service, although more detailed records will remain with the specialist host. become mainstream. Questions also remain about the feasibility of integrating Record Access into professional workflow in light of the potential administrative requirements. This study aimed to examine how practices had integrated record access during the course of a one year pilot, and to identity human, organizational or technical barriers warranting attention prior to wider rollout. It also sought to explore whether some of the benefits demonstrated in US studies of PHR, such as improved provider-patient relationships, patient self-care and reduced consulting time, <ref type="bibr">15</ref> were also being felt in British health centres adopting record access.</p>
+            <p>Conclusions Record access has an important role to play in supporting patient-focused healthcare policies in the UK and may be easily accommodated within existing services. Additional materials to facilitate patient recruitment, inform system set-up processes, and assure clinicians of their legal position are likely to encourage more widespread adoption.</p>
+            <p>The past decade has seen an increasing appreciation of the role of Information and Communications Technologies (ICT) in modernizing healthcare systems. Central to the 'eHealth' vision espoused by many governments is the promise of networked ICT (internet and mobile) to help engage citizens as partners in healthcare, chiefly through increasing the accessibility of relevant information and services. <ref type="bibr" target="#b0">1</ref> This reflects a growing emphasis, in many Western nations, on patient-centred healthcare models and complements wider citizen-centric policy initiatives around public engagement, freedom of information and civic transparency.</p>
+            <p>ii The UK has a single National Health Service in which the GP acts as the first point of care, the conduit to specialist services and the coordinator of community-based follow-up. As a result they generally receive core documentation pertaining to their patients from other parts of the service, although more detailed records will remain with the specialist host. Questions also remain about the feasibility of integrating Record Access into professional workflow in light of the potential administrative requirements. This study aimed to examine how practices had integrated record access during the course of a one year pilot, and to identity human, organizational or technical barriers warranting attention prior to wider rollout. It also sought to explore whether some of the benefits demonstrated in US studies of PHR, such as improved provider-patient relationships, patient self-care and reduced consulting time, <ref type="bibr" target="#b14">15</ref> were also being felt in British health centres adopting record access.</p>
+            <p>One year prior to our survey, the GP software supplier EMIS had sought expressions of interest from practices wishing to pilot its new online Record Access system. This was publicized via the email network of the UK Record Access Collaborative and local EMIS user groups. iii Fifty-seven practices had volunteered to participate and these were targeted by our survey. Record Access was available for a year prior to the survey, in order to allow the service to become embedded, although practices varied in their timescales for implementation.</p>
+            <p>When asked if record access had been easily integrated into workflow, almost half the clinicians (46.6%) agreed, 20% disagreed and the remainder gave a neutral response. Reported challenges included the time and resources available to recruit patients and to check records for thirdparty references, and concerns about the legality of providing patients with access to medical records in light of the UK Data Protection Act. While 80% had not changed the way in which they write patient records as a result of providing this service, 20% reported having done so, indicating that it had motivated them to use clearer language and avoid subjective comments. Despite the challenges, three quarters of clinicians (73.3%) said they would be willing to recommend record access to another health centre.</p>
+            <p>In total, 42.0% of managers had heard about record access prior to the study, usually via a clinical colleague. Most (64.3%) reported that participation was agreed during a health centre meeting. Eleven out of the fourteen centres (78.6%) already offered some type of online service including, appointment booking (all) and repeat prescriptions (nine). Most (85.7%) indicated that all clinicians in their centre supported the provision of record access.</p>
+            <p>Most centres had recruited patients using waiting room leaflets or posters (71.4%), or opportunistically during consultations (57.1%). Over half (64.2%) had found this easy or very easy, and 21.4% had found it somewhat difficult (none had found it 'very difficult' and three failed to complete this item). Perceived barriers included patients' concerns about security, lack of interest, poor understanding of potential benefits and insufficient time for receiving instruction. Patients were typically enrolled by completing a consent/ registration form. Organizational challenges included the time required to complete the registration process and review patient notes.</p>
+            <p>38.5% of patients indicated that record access had improved their trust in the health centre and their confidence in sharing information or decisions with their doctor, while 61.5% indicated that it had not affected these factors.</p>
+            <p>Representatives from 15 of the practices that had opted not to proceed with Record Access agreed to be interviewed.</p>
+            <p>Explanations included a lack of priority (in most cases it was regarded positively but had simply not yet been implemented), lack of internal agreement (e.g. only one GP advocate in the practice), perceived workload (e.g. time required to check records; patients seeking clarification); uncertainly about operating procedures or likely benefits (lack of information); lack of patient demand (e.g. service offered but no take-up) and security concerns ( privacy). None expressed concerns about litigation, citing confidence in the information held in their systems, although there was some uncertainty about their position if record access were to reveal third-party information. While confidentiality was a concern, inappropriate sharing by patients was felt to be potentially more problematic than a technical breach. The potential for medical records to confuse or upset some patients was also acknowledged. Overall, these non-users supported the principle of record access and regarded it as 'an inevitability', but felt that more information and support should be available to help them prepare to deliver this service.</p>
+            <p>The generally favourable attitudes revealed by all three stakeholder groups in this survey reflect a common finding in the research literature on record access and personal health records; namely that where these are available, such systems are well liked by patients and accepted by most professionals. <ref type="bibr">16 -19</ref> The results also support previous studies that have identified professional concerns around security, privacy and liability, for which technical, educational and regulatory steps may be warranted. <ref type="bibr" target="#b19">20</ref> Only one patient in our sample expressed concern about having their detailed GP record available online ( possibly as a result of the experience) and all felt comfortable with the way in which consent had been requested. Moreover the majority had shared their record with a partner or family member, indicating that patients and clinicians may have rather different views of the costs and benefits of data transparency, an observation also made in the recent evaluation of the Summary Care Record in England. <ref type="bibr" target="#b20">21</ref> Despite some concerns about operational resourcing, the relative ease with which record access appears to have been integrated into work practices and its lack of impact (or its positive impact) on administrative time and clinical workflow bode well for more widespread use. It is noteworthy that practices which had yet to implement the service remained positive about it and intended to do so in the future.</p>
+            <p>Ray Jones</p>
+            </body>
+      </text>
+   </TEI>
+   <TEI subtype="pmc" type="article">
+      <teiHeader>
+         <fileDesc xml:id="ec09b2396e">
+            <titleStmt>
+               <title>Vascular Pedicle Width on Chest Radiograph as a Measure of Volume Overload: Meta-Analysis</title>
+            </titleStmt>
+            <sourceDesc>
+               <bibl>
+                  <idno type="DOI">10.5811/westjem.2011.3.2023</idno>
+                  <idno type="PMC">PMC3236159</idno>
+                  <idno type="PMID">22224132</idno>
+                  <idno type="origin">PMC3236159</idno>
+               </bibl>
+            </sourceDesc>
+         </fileDesc>
+         <encodingDesc/>
+         <profileDesc>
+            <textClass>
+               <catRef target="#with_reconciliation_and_scripts"/>
+               <catRef target="#unique_annotator"/>
+            </textClass>
+         </profileDesc>
+      </teiHeader>
+      <text xml:lang="en">
+         <body>
+            <p><ref type="bibr">11</ref> <ref type="figure">(Figure 1</ref> <ref type="bibr">12-20</ref> <ref type="figure">Figure 2</ref> <ref type="bibr">12-24</ref> Articles were selected if VPW was measured on CR in patients in either erect or supine positions and if volume overload had been evaluated by invasive and/or noninvasive techniques, including pulmonary artery occlusion pressure (PAOP), global end diastolic volume, intrathoracic blood volume index, left atrial emptying fraction (LAEF), or total blood volume. Studies that did not report a mean value or standard deviation (SD) were excluded. Two reviewers also independently assessed each included study and evaluated the quality of each article using the Jadad score. <ref type="bibr">25</ref> The mean VPW, SD, correlation coefficient, and sample size were obtained from each study. <rs resp="#curator" type="software" xml:id="ec09b2396e-software-1">Comprehensive meta- analysis</rs> software <rs corresp="#ec09b2396e-software-1" resp="#annotator2" type="version">2.2</rs> and <rs cert="0.8" resp="#annotator2" type="software" xml:id="ec09b2396e-software-2">Stata</rs> <rs corresp="#ec09b2396e-software-2" resp="#annotator2" type="version">11</rs> (College Station, Texas) were used for data analysis. <ref type="bibr">26</ref> The summary effect of mean VPW (weighted mean) was estimated by assigning weight as the inverse of its variance method in the fixed effects of metaanalysis. <ref type="bibr">27</ref> A random effect model, utilizing the DerSimonian and Laird method, estimated the summary effect of mean VPW. <ref type="bibr">28</ref> Similarly, fixed and random effects were estimated for cardiothoracic ratio (CTR) as well as correlation coefficiency. Two subgroups, erect and supine, were analyzed for VPW values. The Q-test, which is a chi-square method, was used for comparison between these 2 groups based on Cochran method. <ref type="bibr">29</ref> A P value less than 0.05 was considered a statistically significant difference between groups.</p>
+            <p><ref type="bibr">11</ref> <ref type="figure">(Figure 1</ref> <ref type="bibr">12-20</ref> <ref type="figure">Figure 2</ref> <ref type="bibr">12-24</ref> Articles were selected if VPW was measured on CR in patients in either erect or supine positions and if volume overload had been evaluated by invasive and/or noninvasive techniques, including pulmonary artery occlusion pressure (PAOP), global end diastolic volume, intrathoracic blood volume index, left atrial emptying fraction (LAEF), or total blood volume. Studies that did not report a mean value or standard deviation (SD) were excluded. Two reviewers also independently assessed each included study and evaluated the quality of each article using the Jadad score. <ref type="bibr">25</ref> The mean VPW, SD, correlation coefficient, and sample size were obtained from each study. <rs resp="#curator" type="software" xml:id="ec09b2396e-software-1">Compreh. meta- analysis</rs> software <rs corresp="#ec09b2396e-software-1" resp="#annotator2" type="version">2.2</rs> and <rs cert="0.8" resp="#annotator2" type="software" xml:id="ec09b2396e-software-2">Stata. Soft.</rs> <rs corresp="#ec09b2396e-software-2" resp="#annotator2" type="version">11</rs> (College Station, Texas) were used for data analysis. <ref type="bibr">26</ref> The summary effect of mean VPW (weighted mean) was estimated by assigning weight as the inverse of its variance method in the fixed effects of metaanalysis. <ref type="bibr">27</ref> A random effect model, utilizing the DerSimonian and Laird method, estimated the summary effect of mean VPW. <ref type="bibr">28</ref> Similarly, fixed and random effects were estimated for cardiothoracic ratio (CTR) as well as correlation coefficiency. Two subgroups, erect and supine, were analyzed for VPW values. The Q-test, which is a chi-square method, was used for comparison between these 2 groups based on Cochran method. <ref type="bibr">29</ref> A P value less than 0.05 was considered a statistically significant difference between groups.</p>
+            <p>A funnel plot is designed to check the existence of publication bias in meta-analysis. Studies with publication bias usually obtain an asymmetric funnel plot. <ref type="bibr" target="#b30">30</ref> We did funnel plots on both erect and supine mean VPW (data not shown). Our results showed that the supine VPW measurement has less publication bias than did the erect VPW measurement. However, publication bias is only one of the possible explanations for funnel plot asymmetry. Factors that can affect the funnel plot asymmetry include but are not limited to language bias, citation bias, the size of effect differing according to study size, and poor methodological design of small studies, etc. <ref type="bibr" target="#b31">31,</ref><ref type="bibr" target="#b32">32</ref> As a result of the limited data, this metaanalysis included both prospective and retrospective studies. In the erect VPW group, there are only 2 small studies included, which could significantly affect the results and cause an asymmetric funnel plot.</p>
+            <p>Studies that reported only cut-off VPW values chosen from receiver operating characteristic curves are not included in this meta-analysis as a result of lack of VPW mean and SD values. <ref type="bibr" target="#b11">11,</ref><ref type="bibr" target="#b20">[20]</ref><ref type="bibr" target="#b21">[21]</ref><ref type="bibr" target="#b22">[22]</ref><ref type="bibr" target="#b23">[23]</ref><ref type="bibr" target="#b24">[24]</ref> This could result in eschewed data and poor meta-analysis due to incomplete enrollment of all studies. In addition, although bigger VPW values correlated with higher PAOP, wider inferior vena cava (IVC) diameter, higher LAEF, and worsening total circulating blood volume, because of the limited numbers of subjects enrolled, no large validation studies were performed individually. <ref type="bibr" target="#b33">[33]</ref><ref type="bibr" target="#b34">[34]</ref><ref type="bibr" target="#b35">[35]</ref><ref type="bibr" target="#b36">[36]</ref><ref type="bibr" target="#b37">[37]</ref><ref type="bibr" target="#b38">[38]</ref><ref type="bibr" target="#b39">[39]</ref><ref type="bibr" target="#b40">[40]</ref><ref type="bibr" target="#b41">[41]</ref><ref type="bibr" target="#b42">[42]</ref><ref type="bibr" target="#b43">[43]</ref><ref type="bibr" target="#b44">[44]</ref><ref type="bibr" target="#b45">[45]</ref><ref type="bibr" target="#b46">[46]</ref><ref type="bibr" target="#b47">[47]</ref><ref type="bibr" target="#b48">[48]</ref><ref type="bibr" target="#b49">[49]</ref><ref type="bibr" target="#b50">[50]</ref><ref type="bibr" target="#b51">[51]</ref> </p>
+            <p>The data from this meta-analysis report VPW values from both erect and supine CR techniques that support the correlation between volume overload and increased VPW measurements. <ref type="bibr" target="#b11">11,</ref><ref type="bibr" target="#b12">12,</ref><ref type="bibr" target="#b33">[33]</ref><ref type="bibr" target="#b34">[34]</ref><ref type="bibr" target="#b35">[35]</ref> Prior studies were limited by small sample size, varying VPW measurements, and CR technique (supine and erect). VPW was initially described using 72-inch erect periapical radiographs. However, supine CRs are commonly performed in critically ill patients using a portable radiograph machine. Thus, it is critical to address the difference in VPW values based on the position of the patient for CR. VPW measured <ref type="bibr" target="#b11">11</ref> on supine CRs in normal volunteers increased by 17% as a result of gravity. In addition, VPW values can be altered by respiratory effects or by subjects' previous medical problems, especially cardiovascular diseases. <ref type="bibr" target="#b11">11</ref> For these reasons, the accuracy of VPW measurements on supine CR and its correlation with volume status has been questioned.</p>
+            <p>Four studies included in this meta-analysis used the supine CR technique for VPW measurements on subjects in the intensive care unit setting. Mean VPW values on supine CRs were significantly larger than in erect CRs (62 mm vs 71 mm, Q &#188; 77.3, P , 0.001). Analysis of statistical heterogeneity is done using the Q statistic, which is a measure of the variability among studies related to the outcome variable. We chose the results from the random effect model on VPW value since the heterogeneity is presented (P , 0.001). In contrast, results of correlation coefficient from fixed-effects model are used because no statistically significant difference was found between studies (Q &#188; 0.06, P . 0.05). Our results indicate that different VPW cut-off values need to be considered when using different CR techniques. However, regardless of the CR techniques used to measure the VPW value, they both correlate with volume overload (0.81 vs 0.80, P . 0.05), indicating the reliability of using VPW to evaluate the volume status.</p>
+            <p>Various invasive and noninvasive methods were used to measure volume overload, including pulmonary artery catheterization, ultrasound of the IVC, echocardiogram for LAEF, and direct measurement of total circulating blood volume. <ref type="bibr" target="#b36">[36]</ref><ref type="bibr" target="#b37">[37]</ref><ref type="bibr" target="#b38">[38]</ref><ref type="bibr" target="#b39">[39]</ref><ref type="bibr" target="#b40">[40]</ref><ref type="bibr" target="#b41">[41]</ref><ref type="bibr" target="#b42">[42]</ref><ref type="bibr" target="#b43">[43]</ref><ref type="bibr" target="#b44">[44]</ref><ref type="bibr" target="#b45">[45]</ref><ref type="bibr" target="#b46">[46]</ref><ref type="bibr" target="#b47">[47]</ref><ref type="bibr" target="#b48">[48]</ref><ref type="bibr" target="#b49">[49]</ref><ref type="bibr" target="#b50">[50]</ref><ref type="bibr" target="#b51">[51]</ref> Invasive procedures require skillful operators, are time consuming, and result in more severe complications. <ref type="bibr" target="#b36">[36]</ref><ref type="bibr" target="#b37">[37]</ref><ref type="bibr" target="#b38">[38]</ref><ref type="bibr" target="#b39">[39]</ref> Recently there has been an effort to replace invasive procedures with noninvasive alternatives. Subjects undergoing direct measurement of total circulating blood volume receive high radiation exposure, and this method is contraindicated in patients with a dye allergy or renal failure and is not repeatable on a daily basis. <ref type="bibr" target="#b40">[40]</ref><ref type="bibr" target="#b41">[41]</ref><ref type="bibr" target="#b42">[42]</ref><ref type="bibr" target="#b43">[43]</ref> Bedside ultrasound is used to assess the volume status, including the measurement of IVC and LAEF. However, different percentage of IVC collapse during respiration obtained at different locations (such as at the level of the diaphragm, the hepatic vein inlet, or the left renal vein) indicates relatively higher variability. <ref type="bibr" target="#b51">51</ref> Echocardiogram to measure LAEF requires more specific training and is unreliable in inexperienced hands. Overall, to date there is no gold standard by which to determine whether subjects have volume overload and how severe it is.</p>
+            <p>CRs are commonly used in the ED to evaluate cardiovascular pathology. However, some radiographic signs for cardiovascular pathology are considered subjective, with higher variability among different readers. Using VPW to evaluate volume status is relatively objective. In addition, some studies also investigated the consistency of VPW  <ref type="bibr" target="#b11">11</ref> The intrareader correlation coefficient for VPW is 0.82, and the interreader correlation coefficient is 0.84. <ref type="bibr" target="#b20">20</ref> These studies indicate that measuring VPW on CR has relatively high consistency and low variability.</p>
+            <p>The data from this meta-analysis demonstrate that VPW correlates with volume overload. The higher the VPW value, the greater the correlation with volume overload and/or pulmonary edema. However, it may not be accurate to measure VPW in subjects with recent cardiothoracic surgery or severe rotation on CR or in subjects with mediastinal pathologies. Taken together, VPW measurements may be used as a diagnostic tool to evaluate volume status in selected patients. VPW measurement may be of particular value to emergency physicians, since it represents an easy, quick, and noninvasive method that can be applied in daily practice.</p>
+            <p>Few studies with limited data have also reported that the ''delta'' VPW, which is the difference between VPW measurements before and after treatment, highly correlates with intravascular volume status. <ref type="bibr" target="#b14">14,</ref><ref type="bibr" target="#b22">22</ref> Serial VPW measurements and the ''delta'' VPW may be useful to monitor the volume status change of a patient receiving medical management. However, we are unable to do any meta-analysis on delta VPW as a result of lack of clinical data at this time. To further determine the role of VPW in the evaluation of volume overload requires multicentered, prospective studies involving large numbers of patient and detailed information.</p>
+            <p>VPW value measured in supine and erect positions may be useful for evaluating patient volume status, as it appears to vary in a similar fashion with other prevailing measures of volume overload, none of which provides a gold standard for defining volume overload. In addition, a different cut-off VPW value needs to be considered related to the different CR techniques.</p>
+            <p>We thank Dr Ely and Dr Aloizos for providing further information regarding their studies.</p>
+            </body>
+      </text>
+   </TEI>
+</teiCorpus>

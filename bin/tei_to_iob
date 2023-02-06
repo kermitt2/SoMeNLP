@@ -1,0 +1,268 @@
+#!/usr/bin/env python
+
+import os
+import argparse
+import shutil
+from pathlib import Path
+
+import json
+import xml
+from collections import OrderedDict
+from xml.sax import make_parser, handler
+
+from articlenizer import articlenizer as art
+
+'''
+Convert Softcite TEI corpus into SoMeNLP IOB format.
+To stay consistent with SoMeNLP, we reuse articlenizer for sentence segmentation and tokenization. 
+'''
+
+class TEIContentHandler(xml.sax.ContentHandler):
+    """ 
+    TEI XML SAX handler for reading sections/paragraph with mixed content within xml text tags  
+    """
+
+    # local paragraph
+    section = None
+    paragraph = None
+    ref_spans = None
+    entity_spans = None
+
+    # working variables
+    accumulated = ''
+    currentOffset = -1
+    current_entity = None
+
+    # file out for tokens
+    text_out = None
+
+    # file out for IOB labels
+    labels_out = None
+
+    def __init__(self):
+        xml.sax.ContentHandler.__init__(self)
+
+    def startElement(self, name, attrs):
+        if self.accumulated != '':
+            if self.paragraph == None:
+                self.paragraph = ''
+            self.paragraph += self.accumulated
+            self.currentOffset += len(self.accumulated)
+        if name == 'TEI' or name == 'tei':
+            # beginning of a document, reinit all
+            self.section = None
+            self.paragraph = None
+            self.ref_spans = None
+            self.entity_spans = None
+            self.current_entity = None
+        if name == "p":
+            # beginning of paragraph
+            self.paragraph = ''
+            self.ref_spans = []
+            self.entity_spans = []
+            self.currentOffset = 0
+        if name == "rs":
+            # beginning of entity
+            self.current_entity = OrderedDict() 
+            if attrs.getLength() != 0:
+                if attrs.getValue("type") == 'software':
+                    self.current_entity["type"] = "software"
+                self.current_entity["start"] = self.currentOffset
+        self.accumulated = ''
+
+    def endElement(self, name):
+        # print("endElement '" + name + "'")
+        if name == 'div':
+            self.section = None
+        if name == "p":
+            # end of paragraph 
+            # note is considered as a paragraph
+            if self.paragraph == None:
+                self.paragraph = ''
+            self.paragraph += self.accumulated
+            local_text = self.paragraph
+
+            #if len(self.ref_spans) > 0:
+            #    local_paragraph['ref_spans'] = self.ref_spans
+
+            if len(local_text.strip())>0:
+                # check number of software entities for labeling
+                nb_software_entities = 0
+                for entity in self.entity_spans:
+                    if "type" in entity and entity["type"] == "software":
+                        nb_software_entities += 1
+                written_software_entities = 0
+
+                local_sentences = art.get_tokenized_sentences(local_text)
+
+                if len(local_sentences) == 0:
+                    print("problem no sentence segmentation for:", local_text)
+
+                # typically we have some sentence segmentations in the middle of a software annotation,
+                # we make a first pass to fix this
+                new_local_sentences = []
+                previous_sentence = []
+                for sentence in local_sentences:
+                    sentence = previous_sentence + sentence
+                    if nb_software_entities == 0:
+                        # no software annotation, no problem
+                        new_local_sentences.append(sentence)
+                        previous_sentence = []
+                    else:
+                        # check if an annotation overlap sentence break
+                        final_offset_pos = 0
+                        bad_segmentation = False
+                        for token in sentence:
+                            if final_offset_pos != 0:
+                                final_offset_pos = local_text.find(token, final_offset_pos+1)
+                            else:
+                                final_offset_pos = local_text.find(token, 0)
+                        for entity in self.entity_spans:
+                            if entity["start"] < final_offset_pos and final_offset_pos < entity["end"]:
+                                # bad sentence break, current and next sentences must be concatenated
+                                previous_sentence = sentence + [" "]
+                                bad_segmentation = True
+                                break
+                        if not bad_segmentation:
+                            previous_sentence = []
+                            new_local_sentences.append(sentence)
+                # the following should not happen, but to be sure not to skip a sentence:
+                if len(previous_sentence)>0:
+                    new_local_sentences.append(previous_sentence)
+                local_sentences = new_local_sentences
+                # write token and labels now
+                current_offset_pos = 0
+                for sentence in local_sentences:
+                    start = True
+                    previous_label = 'O'
+                    previous_entity = None
+                    local_sentence_tokens = []
+                    local_sentence_labels = []
+                    for token in sentence:
+                        if start:
+                            start = False
+                        else:
+                            local_sentence_tokens.append(" ")
+                            local_sentence_labels.append(" ")
+                            self.text_out.write(" ")
+                            self.labels_out.write(" ")
+                        self.text_out.write(token)
+                        if current_offset_pos != 0:
+                            current_offset_pos = local_text.find(token, current_offset_pos+1)
+                        else:
+                            current_offset_pos = local_text.find(token, 0)
+                        label = 'O'
+                        if nb_software_entities>0:
+                            for entity in self.entity_spans:
+                                if "type" not in entity or entity["type"] != "software":
+                                    continue
+                                if entity["start"] <= current_offset_pos and current_offset_pos < entity["end"]:
+                                    if previous_label.endswith('Application_Mention') and previous_entity != None and previous_entity["start"] == entity["start"]: 
+                                        label = 'I-Application_Mention'
+                                    else:
+                                        label = 'B-Application_Mention'
+                                        written_software_entities += 1
+                                    previous_entity = entity
+                                    break
+                        if label == 'O':
+                            previous_entity = None
+                        self.labels_out.write(label)
+
+                        local_sentence_tokens.append(token)
+                        local_sentence_labels.append(label)
+
+                        previous_label = label
+
+                    if len(local_sentence_labels) != len(local_sentence_tokens):
+                        print("Different number of tokens and label:", len(local_sentence_tokens), "=/=", len(local_sentence_labels), 
+                            " - ", local_sentence_tokens, local_sentence_labels)
+
+                    self.text_out.write("\n")
+                    self.labels_out.write("\n")
+                self.text_out.flush()
+                self.labels_out.flush()
+
+                # check if every software entities have been written
+                if nb_software_entities != written_software_entities:
+                     print("\nDifferent number of written entities and entities to be written:", str(written_software_entities), "=/=", str(nb_software_entities))
+                     print(self.entity_spans)
+                     print(local_text)
+            self.paragraph = None
+        if name == "rs":
+            if self.paragraph is None:
+                self.paragraph = ""
+            self.paragraph += self.accumulated
+            # end of entity
+            self.current_entity["rawForm"] = self.accumulated
+            self.current_entity["end"] = self.currentOffset + len(self.accumulated)
+            self.entity_spans.append(self.current_entity)
+            self.current_entity = None
+        if name == 'ref':
+            if self.paragraph is None:
+                self.paragraph = ""
+            self.paragraph += self.accumulated
+
+        self.currentOffset += len(self.accumulated)
+        self.accumulated = ''
+
+    def characters(self, content):
+        self.accumulated += content
+
+    def clear(self): # clear the accumulator for re-use
+        self.accumulated = ""
+
+def convert_tei_file(tei_file, output_path=None):
+    # as we have XML mixed content, we need a real XML parser...
+    parser = make_parser()
+    handler = TEIContentHandler()
+
+    text_file = tei_file.replace(".tei.xml", ".data.txt")
+    labels_file = tei_file.replace(".tei.xml", ".labels.txt")
+
+    text_out = open(os.path.join(text_file), 'w')
+    labels_out = open(os.path.join(labels_file), 'w')
+
+    handler.text_out = text_out
+    handler.labels_out = labels_out
+
+    parser.setContentHandler(handler)
+    print(tei_file)
+    parser.parse(tei_file)
+    
+    text_out.close()
+    labels_out.close()
+
+def convert_batch_tei_files(path_to_tei_files, output_path=None):
+    for file in os.listdir(path_to_tei_files):
+        if file.endswith(".tei.xml"):
+            if output_path is None:
+                convert_tei_file(os.path.join(path_to_tei_files, file), path_to_tei_files)
+            else:
+                convert_tei_file(os.path.join(path_to_tei_files, file), output_path)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description = "Convert a TEI XML file into CORD-19-style JSON format")
+    parser.add_argument("--tei-file", type=str, help="path to a TEI XML file to convert")
+    parser.add_argument("--tei-corpus", type=str, help="path to a directory of TEI XML files to convert")
+    parser.add_argument("--output", type=str, 
+        help="path to an output directory where to write the converted TEI XML file, default is the same directory as the input file")
+
+    args = parser.parse_args()
+    tei_file = args.tei_file
+    tei_corpus_path = args.tei_corpus
+    output_path = args.output
+
+    # check path and call methods
+    if tei_file is not None and not os.path.isfile(tei_file):
+        print("the path to the TEI XML file is not valid: ", tei_file)
+    if tei_corpus_path is not None and not os.path.isdir(tei_corpus_path):
+        print("the path to the directory of TEI files is not valid: ", xml_corpus_path)
+    if tei_file is not None:
+        if tei_file.endswith(".tei.xml"):
+            convert_tei_file(tei_file, output_path)
+        else:    
+            print("TEI XML file must end with entension .tei.xml")
+            exit()
+    elif tei_corpus_path is not None:
+        convert_batch_tei_files(tei_corpus_path, output_path=output_path)

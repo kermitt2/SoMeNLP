@@ -18,7 +18,7 @@ The config file of the saved model needs to be edited to add the path of the mod
         },
 ```
 
-Then, to benchmark a model against test set (as defined in the data configuration):
+Then, to benchmark a model against the SoMeSci test set (as defined in the data configuration):
 
 ```console
 bin/benchmark --model-config /media/lopez/store/save/Gold-SciBERT/04-02-2023_21-50-57/model_conf.json --data-config configurations/PMC/NER/gold_data_SciBERT_final_2.json
@@ -54,6 +54,39 @@ Confusion Matrix for:
 ```
 
 Note: the original data config file indicates 200 epochs, so we will need to use the same number of epochs (but it takes really a lot of time). 
+
+To benchmark a model against the **Softcite holdout set** (defined in the indicated data configuration `gold_data_SciBERT_final_holdout.json`) - the holdout set is 20% of the Softcite dataset with full article content to evaluate the extraction on real mention distribution:
+
+```console
+bin/benchmark --model-config /media/lopez/store/save/Gold-SciBERT/04-02-2023_21-50-57/model_conf.json --data-config configurations/PMC/NER/gold_data_SciBERT_final_holdout.json
+```
+
+```
+Performing a benchmark of the model
+===================================
+Start testing on corpus 0
+Testing on corpus 0 took 1756.502 seconds
+Classification result on test_1 ep 40:
+
+Application/Precision/test_1:   0.529
+Application/Recall/test_1:  0.76
+Application/FScore/test_1:  0.624
+
+Total/Precision/test_1: 0.529
+Total/Recall/test_1:    0.76
+Total/FScore/test_1:    0.624
+
+Total/Loss/test_1:  0
+Done
+
+Confusion Matrix for:
+['B-Application', 'I-Application', 'O']
+[[    534       5     110]
+ [     18     886     341]
+ [    358     580 5490639]]
+```
+
+Note: we match against only software name mentions in the Softcite corpus. 
 
 # SoMeNLP
 
