@@ -1,9 +1,15 @@
-This is a fork of SoMeNLP for experimenting and benchmarking exercices.
+This is a fork of SoMeNLP for experimenting and benchmarking exercices. It includes:
 
-After following the instructions of the original project readme (below, note: although not used with SciBERT, generating the features is necessary to avoid raising errors), train a single task model using the dev set to select best model and without test set (as defined in the data configuration):
+1. reproduced training and evaluation of the single NER task model on the SoMeSci corpus (SciBERT fine-tuned),
+
+2. reproduced training and evaluation of the multi-tasks model on the SoMeSci corpus (SciBERT fine-tuned),
+
+3. evaluation of the SciBERT fine-tuned model trained on the SoMeSci corpus (with the provided configuration), applied to the Softcite holdout set (limited to software names). 
+
+After following the install/setup [instructions of the original project readme](#installing) (below, note: although not used with SciBERT, generating the features is necessary to avoid raising errors), to train a **NER task model on SoMeSci** using the dev set to select best model and without test set (as defined in the data configuration):
 
 ```console
-train_model --model-config configurations/PMC/NER/gold_SciBERT_final.json --data-config configurations/PMC/NER/gold_data_SciBERT_final_2.json
+./bin/train_model --model-config configurations/PMC/NER/gold_SciBERT_final.json --data-config configurations/PMC/NER/gold_data_SciBERT_final_2.json
 ```
 
 The modified data config file `gold_data_SciBERT_final_2.json` should correspond to the usual training scenario (train set and dev set to select the best model). 
@@ -21,7 +27,7 @@ The config file of the saved model needs to be edited to add the path of the mod
 Then, to benchmark a model against the SoMeSci test set (as defined in the data configuration):
 
 ```console
-bin/benchmark --model-config /media/lopez/store/save/Gold-SciBERT/04-02-2023_21-50-57/model_conf.json --data-config configurations/PMC/NER/gold_data_SciBERT_final_2.json
+./bin/benchmark --model-config /media/lopez/store/save/Gold-SciBERT/04-02-2023_21-50-57/model_conf.json --data-config configurations/PMC/NER/gold_data_SciBERT_final_2.json
 ```
 
 (the `bin/benchmark` script simply loads the best model given in the config and eval against the test set, as defined in the data configuration) 
@@ -53,7 +59,132 @@ Confusion Matrix for:
  [    78    175 336394]]
 ```
 
-Note: the original data config file indicates 200 epochs, so we will need to use the same number of epochs (but it takes really a lot of time). 
+Note: the original data config file indicates 200 epochs, although the loss that does not seem to be moving a lot at this training stage, we would need to use the same number of epochs (but it takes really a lot of time). 
+
+To train the **multitask model on SoMeSci** similarly using the dev set to select best model and without test set (as defined in the data configuration):
+
+```console
+./bin/train_model --model-config configurations/PMC/NER/gold_multi_opt2_SciBERT.json --data-config configurations/PMC/NER/gold_data_multi_opt2_SciBERT_2.json
+```
+
+Similarly after editing the config file of the saved model to point to the saved best model weights, we can benchmark a model against the SoMeSci test set (as defined in the data configuration) as follow:
+
+```console
+./bin/benchmark --model-config /home/lopez/SoMeNLP/save/Gold-Multi-Opt2-SciBERT/22-06-2023_00-53-56/model_conf.json --data-config configurations/PMC/NER/gold_data_multi_opt2_SciBERT_2.json
+```
+
+The benchmark results against SoMeSci are then as follow (with 50 trainng epoch as for the single task model), for the 3 different tasks: 
+
+* Entity labeling:
+
+```
+Performing a benchmark of the model
+===================================
+Start testing on corpus 0
+Testing on corpus 0 took 112.298 seconds
+Classification result on software/test_0 ep 37:
+
+software/Abbreviation/Precision/test_0: 0.6
+software/Abbreviation/Recall/test_0:    0.923
+software/Abbreviation/FScore/test_0:    0.727
+
+software/AlternativeName/Precision/test_0:  1.0
+software/AlternativeName/Recall/test_0: 1.0
+software/AlternativeName/FScore/test_0: 1.0
+
+software/Application/Precision/test_0:  0.782
+software/Application/Recall/test_0: 0.879
+software/Application/FScore/test_0: 0.828
+
+software/Citation/Precision/test_0: 0.745
+software/Citation/Recall/test_0:    0.888
+software/Citation/FScore/test_0:    0.81
+
+software/Developer/Precision/test_0:    0.806
+software/Developer/Recall/test_0:   0.908
+software/Developer/FScore/test_0:   0.854
+
+software/Extension/Precision/test_0:    0.154
+software/Extension/Recall/test_0:   0.333
+software/Extension/FScore/test_0:   0.211
+
+software/License/Precision/test_0:  0.786
+software/License/Recall/test_0: 0.846
+software/License/FScore/test_0: 0.815
+
+software/Release/Precision/test_0:  0.75
+software/Release/Recall/test_0: 0.9
+software/Release/FScore/test_0: 0.818
+
+software/URL/Precision/test_0:  0.802
+software/URL/Recall/test_0: 0.908
+software/URL/FScore/test_0: 0.852
+
+software/Version/Precision/test_0:  0.883
+software/Version/Recall/test_0: 0.952
+software/Version/FScore/test_0: 0.916
+
+software/Total/Precision/test_0:    0.793
+software/Total/Recall/test_0:   0.894
+software/Total/FScore/test_0:   0.84
+```
+
+
+* software mention typing: 
+
+```
+Classification result on soft_type/test_0 ep 37:
+
+soft_type/Application/Precision/test_0: 0.668
+soft_type/Application/Recall/test_0:    0.827
+soft_type/Application/FScore/test_0:    0.739
+
+soft_type/OperatingSystem/Precision/test_0: 0.708
+soft_type/OperatingSystem/Recall/test_0:    0.739
+soft_type/OperatingSystem/FScore/test_0:    0.723
+
+soft_type/PlugIn/Precision/test_0:  0.538
+soft_type/PlugIn/Recall/test_0: 0.438
+soft_type/PlugIn/FScore/test_0: 0.483
+
+soft_type/ProgrammingEnvironment/Precision/test_0:  0.972
+soft_type/ProgrammingEnvironment/Recall/test_0: 0.958
+soft_type/ProgrammingEnvironment/FScore/test_0: 0.965
+
+soft_type/SoftwareCoreference/Precision/test_0: 0.615
+soft_type/SoftwareCoreference/Recall/test_0:    0.889
+soft_type/SoftwareCoreference/FScore/test_0:    0.727
+
+soft_type/Total/Precision/test_0:   0.689
+soft_type/Total/Recall/test_0:  0.786
+soft_type/Total/FScore/test_0:  0.731
+```
+
+* Function information on the software mentions:
+
+```
+Classification result on mention_type/test_0 ep 37:
+
+mention_type/Creation/Precision/test_0: 0.778
+mention_type/Creation/Recall/test_0:    0.836
+mention_type/Creation/FScore/test_0:    0.806
+
+mention_type/Deposition/Precision/test_0:   0.633
+mention_type/Deposition/Recall/test_0:  0.838
+mention_type/Deposition/FScore/test_0:  0.721
+
+mention_type/Mention/Precision/test_0:  0.268
+mention_type/Mention/Recall/test_0: 0.542
+mention_type/Mention/FScore/test_0: 0.359
+
+mention_type/Usage/Precision/test_0:    0.798
+mention_type/Usage/Recall/test_0:   0.831
+mention_type/Usage/FScore/test_0:   0.814
+
+mention_type/Total/Precision/test_0:    0.74
+mention_type/Total/Recall/test_0:   0.807
+mention_type/Total/FScore/test_0:   0.769
+```
 
 To benchmark a model against the **Softcite holdout set** (defined in the indicated data configuration `gold_data_SciBERT_final_holdout.json`) - the holdout set is 20% of the Softcite dataset with full article content to evaluate the extraction on real mention distribution:
 
@@ -86,7 +217,7 @@ Confusion Matrix for:
  [    358     580 5490639]]
 ```
 
-Note: we match against only software name mentions in the Softcite corpus. 
+Note: we match against only software name mentions in the Softcite corpus. Some software annotation scope/guidelines might be different between Softcite and SoMeSci. 
 
 # SoMeNLP
 

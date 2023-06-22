@@ -25,13 +25,13 @@
         }
     },
     "training": {
-        "print_errors": false,
+        "print_errors": true,
         "max_output_length": 110,
         "test_epochs": 1,
         "save_epochs": 1000,
         "save_max": true,
         "eval_dataset_name": "devel_0",
-        "save_from": 140,
+        "save_from": 30,
         "print_batches": 50,
         "save_batches": 40000,
         "test_batches": 10000,
