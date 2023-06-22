@@ -217,7 +217,9 @@ Confusion Matrix for:
  [    358     580 5490639]]
 ```
 
-Note: we match against only software name mentions in the Softcite corpus. Some software annotation scope/guidelines might be different between Softcite and SoMeSci. 
+**Note:** we match against only software name mentions in the Softcite corpus. 
+
+**Some software annotations are different between Softcite and SoMeSci due to annotation scope and guidelines. These differences in term of definition of what are "software mentions" can lead to false matches when applied to the Softcite holdout set that are not related to the model and the training approach used in SoMeNLP. Determining the proportion of false matches due to different definition and scope of software mentions and due to the distribution of software mentions and quality of the training data of SoMeNLP will require addition work.**
 
 # SoMeNLP
 
